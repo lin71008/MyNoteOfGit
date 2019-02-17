@@ -17,7 +17,7 @@ git config --global alias.co commit
 git config --global alias.st status
 git config --global alias.lg "log --color --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 ```
-### 基礎 \(OuO \)
+### 基礎 \\\(OuO \\\)
 #### 初始化
 ``` text
 git init
@@ -56,7 +56,23 @@ git checkout "Revision"
 git reset "Revision"
 git reset --hard "Revision"
 ```
+### GitHub \(/ OwO\)/
+#### 設定GitHub位置
+``` text
+git remote add "Name" "URL"
+```
+#### 下載GitHub上的版本庫
+``` text
+git clone "URL"
+```
+#### \[下載/上傳\]版本庫到GitHub
+``` text
+git pull "Name"
+git push "Name"
+```
+### 呆瓜 \(///w///\)
+#### 分支好難...跳過\(X_X\)
 
 ## 備忘錄
 
-順帶練習 .md
+順帶來練習Markdown
