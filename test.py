@@ -12,6 +12,6 @@ def cuu_list(item_list):
 		counter += cuu(item[0], item[1])
 	return counter
 
-print(cuu(16))
-print(cuu(1,'stack'))
-print(cuu_list([[3,'stack'],[1,'stack']]))
+db, st, un = 1, 2, 3
+
+print(cuu_list([[db,'double_box'],[st,'stack'],[un,'unit']]))
