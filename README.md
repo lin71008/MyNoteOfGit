@@ -1,10 +1,30 @@
-# git 備忘錄
+# git/github 學習筆記
 
 ## 簡介
 
-本人正在練習使用git中...
+以防本呆瓜哪天忘記一些操作指令，紀錄了一些關於git/github的操作步驟。
 
-## 指令列表
+## Git
+### 簡介
+
+分散式版本控制軟件，GPL2, 由Linus Torvalds開發。
+
+### 基本概念
+版本庫<--->暫存區<--->工作區
+操作原則: 必要才放工作區，工作好丟暫存區， 完成階段開發才放版本庫
+特殊檔案: ".gitignore"管理忽略資料, ".gitattributes"管理diff/merge行為
+
+### 指令列表
+
+* 初始化 ```git init```
+
+* 工作區--->暫存區 ```git add FILENAME```
+* 暫存區--->工作區 ```git reset FILENAME```
+* 檢視暫存區狀態 ```git status```
+* 
+
+```
+
 ### 初始設定
 ``` text
 git config --global user.email "Your Email"
@@ -18,11 +38,9 @@ git config --global alias.st status
 git config --global alias.lg "log --color --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 ```
 ### 基礎 \\\(OuO \\\)
-#### 初始化
 ``` text
 git init
 ```
-#### 檢視暫存狀態
 ``` text
 git status
 ```
