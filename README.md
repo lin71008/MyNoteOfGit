@@ -1,5 +1,4 @@
 # git/github 學習筆記
-
 ## 簡介
 
 以防本呆瓜哪天忘記一些操作指令,紀錄了一些關於git/github的操作步驟。
@@ -8,27 +7,17 @@
 ### 簡介
 
 由Linus Torvalds為了管理Linux kernel的開發而開發。
-
 分散式版本控制軟件,節省檔案空間,無需專用伺服器。
 
 ### 基本概念
 
 版本庫<--->(暫存區<--->工作區)
-
 操作原則: 工作好丟暫存區,完成階段開發才放版本庫。
-
-特殊檔案: ".gitignore"管理忽略資料,".gitattributes"管理diff/merge行為
-<<<<<<< HEAD
+特殊檔案: ".gitignore"管理忽略資料,".gitattributes"管理文件屬性"。
 
 ### 指令列表(**全大寫單詞(?)表示需視情況代入**)
 #### 基本操作
 
-=======
-
-### 指令列表(**全大寫單詞(?)表示需視情況代入**)
-#### 基本操作
-
->>>>>>> c3b707117ec9d24d999329cd6c2042a8ca22098f
 * 初始化 ```git init```
 * 檢視暫存區/工作區狀態 ```git status```
 * 工作區--->暫存區 ```git add FILENAME```
@@ -63,15 +52,17 @@
     - 合併分支 ```git merge NAME```
     - 刪除 ```git branch -d NAME```
 
-<<<<<<< HEAD
 ### 特殊檔案
+#### .gitignore
 
-* .gitignore
 
-=======
->>>>>>> c3b707117ec9d24d999329cd6c2042a8ca22098f
+#### .gitattributes
+
+* 簡介: 管理文件屬性，影響 diff, add, commit, checkout, merge ,...等操作
+* [link](./README.md)
+
+
 ## GitHub
-
 ### 簡介
 
 恩...就是個用來交流代碼的網站。
