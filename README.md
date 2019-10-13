@@ -1,6 +1,7 @@
 # git/github 學習筆記
 ## 簡介
 
+**有生之年系列(X)**, 最近很懶~~~
 以防本呆瓜哪天忘記一些操作指令,紀錄了一些關於git/github的操作步驟。
 
 ## Git
@@ -55,11 +56,23 @@
 ### 特殊檔案
 #### .gitignore
 
+* 簡介: 設定忽略追蹤特定檔案/檔案類型/暫存資料夾
+
+```git
+# <- ignore
+# ignore 'test.c'
+test.c
+# ignore any '.exe' type file
+*.exe
+# ignore 'test' folder
+test/
+```
+
 
 #### .gitattributes
 
 * 簡介: 管理文件屬性，影響 diff, add, commit, checkout, merge ,...等操作
-* [link](./README.md)
+* ~~[link](./README.md)~~
 
 
 ## GitHub
