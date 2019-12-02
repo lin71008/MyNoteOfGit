@@ -1,0 +1,5 @@
+# ignore floder
+/Tmp/
+/.vscode/
+# ignore file
+/*.exe
