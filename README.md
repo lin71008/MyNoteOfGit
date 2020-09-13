@@ -1,18 +1,16 @@
-# git/github 學習筆記
-## 簡介
+# Git/GitHub 學習筆記
 
-**有生之年系列(X)**, 最近很懶~~~
-以防本呆瓜哪天忘記一些操作指令, 紀錄了一些關於git/github的操作步驟。
+以防本呆瓜哪天忘記一些操作指令, 紀錄了一些關於git/github的操作步驟
 
 ## Git
-### 簡介
 
-* 由Linus Torvalds為了管理Linux kernel的開發而開發
-* 分散式版本控制軟件: 無須中央資料庫
-* 節省檔案空間: 僅紀錄檔案的變化
-* GNU GPLv2: Free Software
+- 由Linus Torvalds為了管理Linux kernel的開發而開發
+- 分散式版本控制軟件
+    + 每個人手上都有一份完整的檔案資料 -> 無須中央資料庫
+- 僅紀錄檔案的變化 -> 節省檔案的保存空間 
+- 授權: GNU GPL
 
-### 基本概念
+### 架構圖 & 心得筆記(?)
 
 ```
 *----------*      *---------*------------*------------------*
@@ -28,95 +26,79 @@
 |          |      |             Commit <-|--     <-|-- Add  |
 |          |      |                      | <Stage> |        |
 |        <-|------|-- Push               |         |        |
+|        <-|------|-- Pull Request       |         |        |
 |          |      |                      |         |        |
 *----------*      *----------------------*---------*--------*
 ```
 
-* 原則: 
-    - 工作好丟暫存區(Add),完成階段開發才新增版本(Commit)。
-    - 用分支(Branch)來管理開發中版本 / 釋出版本。
-* 特殊檔案: 
-    - 管理忽略資料: [.gitignore]("#")
-    - 管理文件屬性: [.gitattributes]("./attributes.md")
+- 做任何操作前, 先開一個新的分支(branch), 並在新的分支上做事(checkout)
+- 慢慢將修改好的要記錄的檔案加入暫存(stage), 當做到一個階段, 再發送版本提交(?)(Commit)
+    + 學習如何寫Commit massage (~~英文好難QQ~~)
+- 覺得自己寫的新特性差不多完成了, 切回主分支上, 嘗試合併(merge)剛剛的變更
+    + or 嘗試向作者發送合併請求(?)(pull request)
+- 跟人討論, 交流對程式的想法. 重新檢視你的成果
+- 推送(push)到網路上, 讓大家可以看到你的努力成果
+
 
 ### 指令列表
-#### 基本操作
 
-* 初始化 `git init`
-* 檢視狀態 `git status`
-* 工作區--->暫存區 `git add <File>`
-    - 加入被忽略的檔案 `git add -f <File>`
-* 暫存區--->版本庫 ```git commit (-m <Message>) <File>```
-* 檢視版本紀錄 ```git log```
+| 作用 | 指令 |
+| :-: | -: |
+| 初始化 | `git init` |
+| 將檔案加入暫存 | `git add <File>` |
+| 將全部檔案加入暫存 | `git add .` |
+| 將檔案刪除並加入暫存 | `git rm <File>` |
+| 將檔案變更移除暫存 | `git rm --cached <File>` |
+| 忽略追蹤特定檔案的變更 | 參見[.gitignore](#.gitignore) |
+| 檢視目前工作區狀態 | `git status` |
+| 發送版本提交 | `git commit <-m "Massage">` |
+| 檢視版本紀錄 | `git log <Commit> <--author=Name> <-p File>` |
+| 檢視檔案差異 | `git diff <Commit> <Commit> <File>` |
+| 檔案重新命名/搬遷位置 | `git mv <OldPath> <NewPath>` |
+| 建立分支 | `git branch <Name>` |
+| 切換分支 | `git checkout <Name>` |
+| 合併分支 | `git merge <Name>` |
+| 刪除分支 | `git branch -d <Name>` |
 
-#### 複雜操作
+- 版本相對路徑
+    + `HEAD`: 目前版本
+    + `HEAD^`: 前一版, `HEAD^^`: 前二版, `HEAD^^^`: 前三版... 
+    + `HEAD~N`: 前N版
 
-* 設定預設值, 縮寫...
-    - 設定預設帳號 ```git config --global user.email "EMAIL"```
-    - 設定預設名稱 ```git config --global user.name "Name"```
-    - 彩色UI介面 ```git config --global color.ui true```
-    - 短指令 ```git config --global alias.{#} {###}```
-        + commit->co ```git config --global alias.co commit```
-        + status->st ```git config --global alias.st status```
-        + log->lg ```git config --global alias.lg "log --color --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"```
-* 檔案操作
-    - 更改名稱 / 位置 ```git mv <OldFile> <NewFile>```
-    - 刪除檔案 ```git rm <File>```
-* 版本庫相關
-    - 檢視版本庫紀錄 ```git log <Commit> <--author=Name> <-p File>```
-    - 檢視檔案紀錄 ```git blame <-L From To> <File>```
-    - 切換版本 ```git checkout NAME```
-    - 更改上筆歷史紀錄 ```git commit --amend "MESSENGE"```
-    - 取消上筆版本提交 ```git reset ```
-    - 查看版本差異 ```git diff <Commit> <Commit>```
-        + 相對路徑 ```HEAD^^, HEAD~3```
-* 分支
-    - 建立分支 ```git branch NAME```
-    - 切換節點 ```git checkout NAME```
-    - 合併分支 ```git merge NAME```
-    - 刪除 ```git branch -d NAME```
 
-### 特殊檔案
-#### .gitignore
+### .gitignore
 
-* 簡介: 設定忽略追蹤特定檔案/檔案類型/暫存資料夾
+設定忽略追蹤特定檔案/檔案類型/資料夾
 
 ```git
-# <- ignore
-# ignore 'test.c'
-test.c
-# ignore any '.exe' type file
+# 使用 '#' 來撰寫註解
+# 忽略追蹤 'hello.c'
+hello.c
+# 忽略追蹤所有以 '.exe' 為附檔名的檔案
 *.exe
-# ignore 'test' folder
+# 忽略追蹤 'test' 資料夾與其中的一切
 test/
 ```
 
+- 如果想在不變更`.gitignore`下, 將標註的檔案加入追蹤
+    使用 `git add -f <File>`
 
-#### .gitattributes
 
-* 簡介: 管理文件屬性，影響 diff, add, commit, checkout, merge ,...等操作
-* ~~[link](./README.md)~~
+### .gitattributes
+
+> 暫不明, 呆瓜研究中
 
 
 ## GitHub
-### 簡介
 
-恩...就是個用來交流代碼的網站。
+恩... 就是個用來交流代碼的網站
 
-### 指令列表(**全大寫單詞(?)表示需視情況代入**)
+### 指令列表
 
-* 設定位置 ```git remote ORGIN URL```
-* 複製版本庫下來 ```git clone URL```
-* 更新版本庫
-    - 上傳 ```git push ORGIN```
-    - 下載 ```git pull ORGIN```
-
-### 免費架站(?)
-
-設定一個名叫gh-pages的分支,進設定調整一下就OK.
-僅限定靜態網站。
-
-
-## 備忘錄
-
-順帶來練習Markdown,git還真是個複雜的工具阿
+| 作用 | 指令 |
+| :-: | -: |
+| 新增版本庫位置 | `git remote add <Name> <url>` |
+| 複製版本庫至電腦 | `git clone <url>` |
+| 將遠端更新下載至電腦 | `git pull <Name>` |
+| 將遠端更新同步至電腦 | `git fetch <Name>` |
+| 將電腦端更新上傳至遠端 | `git push <Name>` |
