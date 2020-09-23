@@ -1,5 +1,10 @@
-# ignore floder
-/Tmp/
-/.vscode/
-# ignore file
-/*.exe
+# Editor Template File
+.vscode/
+.vs/
+
+# Python Template File
+__pychase__/
+
+
+# Binary File
+*.exe
