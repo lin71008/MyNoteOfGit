@@ -34,7 +34,7 @@
 - 初始化, `git init`; 複製下載, `git clone <url>`
 - 當要開發新功能, 開一個新的分支, `git branch <name>`
 - 切換到新的分支上做事, `git checkout <key>`
-- 製作一定程度就提交版本, `git commit -m <msg>`
+- 製作一定程度就提交版本, `git commit [-m <msg>]`
   + 將檔案變化加入這次要提交的版本, `git add <path>`
 - 開發好了, 切回主分支, 將提交合併回分支, `git merge <branch>`
 - 同步遠端分支, `git fetch <remote>`
@@ -43,30 +43,26 @@
 | 作用 | 指令 |
 | :-: | :- |
 | 初始化 | `git init` |
-| 將檔案加入暫存 | `git add <File>` |
-| 將全部檔案加入暫存 | `git add .` |
-| 將檔案刪除並加入暫存 | `git rm <File>` |
-| 將檔案變更移除暫存 | `git rm --cached <File>` |
-| 忽略追蹤特定檔案的變更 | 參見[.gitignore](#.gitignore) |
-| 檢視目前工作區狀態 | `git status` |
-| 發送版本提交 | `git commit <-m "Massage">` |
-| 檢視版本紀錄 | `git log <Commit> <--author=Name> <-p File>` |
-| 檢視檔案差異 | `git diff <Commit> <Commit> <File>` |
-| 檔案重新命名/搬遷位置 | `git mv <OldPath> <NewPath>` |
-| 建立分支 | `git branch <Name>` |
-| 切換分支 | `git checkout <Name>` |
-| 合併分支 | `git merge <Name>` |
-| 刪除分支 | `git branch -d <Name>` |
+| 將檔案加入暫存 | `git add <path>` |
+| 將檔案移除暫存 | `git rm --cached <path>` |
+| 將檔案刪除 | `git rm <path>` |
+| 檢視目前狀態 | `git status` |
+| 發送版本提交 | `git commit [-m <msg>]` |
+| 檢視版本紀錄 | `git log <key> [--author=<name>] [-p <path>]` |
+| 檢視檔案差異 | `git diff <key> [<key>] [<path>]` |
+| 改變檔案名稱or路徑 | `git mv <pre_path> <path>` |
+| 建立分支 | `git branch <name>` |
+| 切換版本/分支 | `git checkout <key>` |
+| 合併分支 | `git merge <name>` |
+| 刪除分支 | `git branch -d <name>` |
 
-- 版本相對路徑
+- 版本比較時的相對路徑
     + `HEAD`: 目前版本
     + `HEAD^`: 前一版, `HEAD^^`: 前二版, `HEAD^^^`: 前三版... 
     + `HEAD~N`: 前N版
 
-
 ### .gitignore
-
-設定忽略追蹤特定檔案/檔案類型/資料夾
+設定忽略追蹤特定檔案/類型/資料夾
 
 ```git
 # 使用 '#' 來撰寫註解
@@ -79,24 +75,32 @@ test/
 ```
 
 - 如果想在不變更`.gitignore`下, 將標註的檔案加入追蹤
-    使用 `git add -f <File>`
-
+  使用 `git add -f <File>`
 
 ### .gitattributes
-
-> 暫不明, 呆瓜研究中
-
+- 設定`git`的預設行為
+  + `text=<auto/input/false>`: 設定是否轉換行結尾.
+  + `diff=astextplatn`: ... 
+  + `merge=binary`: ...
 
 ## GitHub
-
-恩... 就是個用來交流代碼的網站
-
 ### 指令列表
 
 | 作用 | 指令 |
 | :-: | :- |
-| 新增版本庫位置 | `git remote add <Name> <url>` |
+| 新增遠端版本庫位置 | `git remote add <name> <url>` |
 | 複製版本庫至電腦 | `git clone <url>` |
-| 將遠端更新下載至電腦 | `git pull <Name>` |
-| 將遠端更新同步至電腦 | `git fetch <Name>` |
-| 將電腦端更新上傳至遠端 | `git push <Name>` |
+| 將遠端更新下載至電腦 | `git pull <name>` |
+| 將遠端更新同步至電腦 | `git fetch <name>` |
+| 將電腦更新上傳至遠端 | `git push <name>` |
+
+
+## submodule
+- 引入其他(子)專案至專案中
+  + 添加: `git submodule add [-name <name>] <url> [<path>]`
+  + 下載: `git clone --recursive <url> [<path>]`
+- 更新所引入其他(子)專案
+  + `git submodule sync --recursive`
+  + `git submodule update --init --recursive`
+- 移除所引入其他(子)專案
+  + `git submodule deinit <name>`
