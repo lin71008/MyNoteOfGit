@@ -1,180 +1,38 @@
 <!doctype html>
 <html lang="en">
-
 	<head>
 		<meta charset="utf-8">
 
 		<title>Git</title>
-
-		<meta name="description" content="OwO">
+		<meta name="description" content="None">
 		<meta name="author" content="Nick Lin">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<link rel="stylesheet" href="reveal.js/css/reset.css">
-		<link rel="stylesheet" href="reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="reveal.js/lib/css/monokai.css">
-
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( reveal.js/print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-
-		<!--[if lt IE 9]>
-		<script src="reveal.js/lib/js/html5shiv.js"></script>
-		<![endif]-->
+    <link rel="stylesheet" href="reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="reveal.js/dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
 	</head>
-
 	<body>
-
 		<div class="reveal">
 			<div class="slides">
-				<!-- Intro -->
-				<section>
-					<section>
-						<h1>Git 版本控制</h1>
-						<h6>2020/09/16</h6>
-					</section>
-					<section>
-						<h3>自我介紹</h3>
-
-						<img src="https://github.com/lin71008.png" style="width: 20rem">
-					</section>
-				</section>
-				<!-- Copy from 2020.09.19 (By Nick Lin) -->
-								<!-- Issue -->
-				<section>
-					<section>
-						<h3>首先先來說個關於合作小故事...</h3>
-					</section>
-					<section>
-						<h3>大家應該都有<del style="color: #777777">被迫</del>跟人一起做</h3>
-						<h4>期末專題、 分組報告、 影音剪輯...的經驗吧</h4>
-					</section>
-				</section>
-
-				<!-- Short Story I -->
-				<section>
-					<h2>現在假設你們要做一個專案</h2>
-					<h4 class = "fragment" style="color: #777777">然後你不幸要負責改code</h4>
-				</section>
-				<section>
-					<section data-background="img/story_1.png">
-						<h3 style="color: #000">老闆 / 導師 / 夥伴 / 自己</h3>
-						<h2 class="fragment zoom-in" style="color: #000">再加(改)個_____好了</h2>
-					</section>
-					<section data-background="img/story_2.png">
-						<h2 class="fragment zoom-in" style="color: #000">: 這個不好再改個_____好了</h2>
-					</section>
-					<section data-background="img/story_3.png">
-						<h2 class="fragment zoom-in" style="color: #000">: 再稍微改個_____好了</h2>
-					</section>
-					<section data-background="img/story_4.png"></section>
-					<section>
-						<h1>......</h1>
-					</section>
-					<section>
-						<h2>兩個月後...沒人知道啥是啥了</h2>
-						<h4 class="fragment zoom-in" style="color: #777777">但...出Bug還是你要負責...</h4>
-					</section>
-				</section>
-
-				<!-- Short Story II -->
-				<section>
-					<h2>又或者你們要做合作一個專案</h2>
-					<h4 style="color: #777777">分工各做一部份 決定用___來共同存放資料</h4>
-				</section>
-				<section>
-					<section>
-						<h3>一切似乎都是如此的美好...</h3>
-						<h2 class="fragment highlight-red">直到截止日逐步逼近......</h2>
-					</section>
-					<section>
-						<h2>當大家開始把各自的版本上傳時</h2>
-						<img src="img/story_5.png">
-					</section>
-					<section>
-						<div style="width:50rem;position:relative;left:5rem">
-							<p style="display:inline-block;margin:0.5rem">誰他X的改了我的碼!</p>
-							<p style="display:inline-block;margin:0.5rem"></p>
-									我的比較好!
-							<p style="display:inline-block;margin:0.5rem">我三小時的努力...( ºΔº )</p>
-							<div>
-								<p style="float:left;position:relative;left:5rem;top:1rem">
-									我<br>先<br>提<br>出<br>想<br>法<br>的<br>!
-								</p>
-								<img src="img/PK.jpg" alt="PK" style="width:30rem">
-								<p style="float:right;position:relative;right:5rem;top:2rem">
-									我<br>先<br>上<br>傳<br>的<br>!
-								</p>
-							</div>
-							<p style="display:inline-block;margin:0.5rem">這一切都是____的陰謀啦!</p>
-							<p style="display:inline-block;margin:0.5rem">誰寫的!這結果不對啊!Σ(;ﾟдﾟ)</p>
-						</div>
-					</section>
-				</section>
-
-				<!-- What's Version Control -->
-				<section>
-					<h1>版本控制</h1>
-				</section>
-				<section>
-					<section>
-						<h3>透過前些的討論</h3>
-						<h5>想必大家都對版本控制有些想法了吧</h5>
-					</section>
-					<section>
-						<h2>特性</h2>
-						<ul>
-							<li class="fragment">追蹤文件的改動</li>
-							<li class="fragment">回復/比較 先前版本</li>
-							<li class="fragment">同步/合併 開發版本</li>
-						</ul>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>集中式版本控制</h2>
-						<img src="../20151001-Git/cvcs.png">
-					</section>
-					<section>
-						<h2>分散式版本控制</h2>
-						<img src="../20151001-Git/dvcs.png">
-					</section>
-				</section>
-
 			</div>
 		</div>
-
-		<script src="reveal.js/js/reveal.js"></script>
+    <script src="reveal.js/dist/reveal.js"></script>
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
 		<script>
-
 			Reveal.initialize({
 				controls: true,
 				progress: true,
 				center: true,
 				hash: true,
 				transition: 'slide',
-				dependencies: [
-					{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/highlight/highlight.js' },
-					{ src: 'reveal.js/plugin/search/search.js', async: true },
-					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
-					{ src: 'reveal.js/plugin/notes/notes.js', async: true }
-				]
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
-
 		</script>
 	</body>
 </html>
