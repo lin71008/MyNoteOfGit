@@ -104,3 +104,6 @@ test/
   + `git submodule update --init --recursive`
 - 移除所引入其他(子)專案
   + `git submodule deinit <name>`
+- 將專案切割, (須重定義`remote`)
+  + 將部分獨立為新專案: `git filter-branch --subdirectory-filter <path> -- --all`
+  + 將部分自專案移除: `git filter-branch --tree-filter 'rm -rf <path>' -- --all`
